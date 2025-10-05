@@ -1,0 +1,14 @@
+exclude = [
+  '^https://numpydoc.readthedocs\.io.*',
+  '^https://.*pepy\.tech*',
+  '^https://github\.com/{{cookiecutter.__gh_slug}}*',
+  '^https://{{ cookiecutter.github_username|lower }}\.github\.io/{{ cookiecutter.project_slug }}*',
+]
+exclude_path = [
+  "uv.lock",
+  ".devcontainer/Dockerfile",
+  ".devcontainer/install-scripts/",
+  ".github/workflows/publish.yml",
+  "lychee.toml",
+]
+accept = [200, 401, 999]

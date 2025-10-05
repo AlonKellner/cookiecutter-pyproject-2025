@@ -1,0 +1,15 @@
+services:
+  script:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: python
+      args:
+        WORKDIR: ${WORKDIR}
+    networks:
+      - {{ cookiecutter.project_slug }}
+networks:
+  {{ cookiecutter.project_slug }}:
+    external: true

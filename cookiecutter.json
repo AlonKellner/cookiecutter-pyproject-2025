@@ -1,0 +1,9 @@
+{
+  "full_name": "Alon Kellner",
+  "email": "me@alonkellner.com",
+  "github_username": "AlonKellner",
+  "project_name": "Place Holder",
+  "project_slug": "place_holder",
+  "project_short_description": "The best Holder in the entire Place.",
+  "__gh_slug": "{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
+}

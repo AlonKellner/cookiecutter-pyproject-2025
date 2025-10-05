@@ -1,0 +1,56 @@
+[project]
+name = "{{cookiecutter.project_slug}}"
+description = "{{cookiecutter.project_short_description}}"
+readme = "README.md"
+
+keywords = [  ]
+maintainers = [ { name = "{{cookiecutter.full_name}}", email = "{{cookiecutter.email}}" } ]
+authors = [ { name = "{{cookiecutter.full_name}}", email = "{{cookiecutter.email}}" } ]
+requires-python = ">=3.10.0"
+classifiers = [
+  "Development Status :: 3 - Alpha",
+
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development",
+]
+
+dynamic = [ "version" ]
+dependencies = [ "typer" ]
+
+urls = { Homepage = "https://github.com/{{cookiecutter.__gh_slug}}.git", Repository = "https://github.com/{{cookiecutter.__gh_slug}}.git", Bugs = "https://github.com/{{cookiecutter.__gh_slug}}/issues", Changelog = "https://github.com/{{cookiecutter.__gh_slug}}/blob/main/CHANGELOG.md" }
+
+scripts.{{cookiecutter.project_slug}} = "{{cookiecutter.project_slug}}.cli:app"
+
+[dependency-groups]
+dev = [ "coverage[toml]", "pytest", "pytest-cov" ]
+
+[tool.pytest.ini_options]
+pythonpath = "./"
+
+[tool.coverage.run]
+omit = [ "src/{{cookiecutter.project_slug}}/__init__.py" ]
+
+[tool.rumdl]
+disable = [ "MD052" ]
+
+[tool.lintok]
+max_tokens = 2048
+exclude = [ "uv.lock", "lcov.info" ]
+
+[tool.typos.files]
+extend-exclude = [ "**/.env.*" ]
+
+[tool.uv]
+package = false
+python-preference = "only-managed"
+link-mode = "copy"
+
+[tool.ty.environment]
+python = "./.venv"
+
+[tool.ty.src]
+exclude = [ "./.ties/**" ]
