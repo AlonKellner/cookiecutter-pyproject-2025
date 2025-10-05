@@ -20,7 +20,7 @@ touch $ENV_FILE
 touch ./.env
 
 # GITHUB_PERSONAL_ACCESS_TOKEN validation
-github_token_line=$(grep "^GITHUB_PERSONAL_ACCESS_TOKEN=." "$ENV_FILE" 2>/dev/null)
+github_token_line=$(grep "^GITHUB_PERSONAL_ACCESS_TOKEN=." "$ENV_FILE" 2>/dev/null || true)
 
 if [ -n "$github_token_line" ]; then
   echo "Found GITHUB_PERSONAL_ACCESS_TOKEN"
