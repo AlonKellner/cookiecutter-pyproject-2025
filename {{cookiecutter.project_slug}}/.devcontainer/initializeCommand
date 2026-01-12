@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
 set -e # Exit immediately if a command exits with a non-zero status.
 
+echo "Running the devcontainer initializeCommand..."
+
 docker network create -d bridge $1 2>/dev/null || true
 mkdir -p $2/.cache/uv
 mkdir -p $2/.cache/pre-commit
 mkdir -p $2/.cache/pip
-mkdir -p $2/.cache/pip-audit
-mkdir -p $2/.cache/trivy
+mkdir -p $2/.cache/pysentry
 mkdir -p $2/.cursor
 mkdir -p $2/.vscode-server
 mkdir -p $2/.ssh
 mkdir -p $2/.config/gcloud
+mkdir -p $2/.config/gh
+mkdir -p $2/.kube
 mkdir -p $2/.aws
 touch $2/.gitconfig
 
@@ -26,12 +29,11 @@ if [ -n "$github_token_line" ]; then
   echo "Found GITHUB_PERSONAL_ACCESS_TOKEN"
 else
   echo -e "\033[31m
-❌ ERROR: GITHUB_PERSONAL_ACCESS_TOKEN is not set in $ENV_FILE!
-❌ https://github.com/settings/personal-access-tokens
-❌ Add it to $ENV_FILE like so:
-❌ \t\tGITHUB_PERSONAL_ACCESS_TOKEN=<your_personal_access_token_here>
+⚠️ WARNING: GITHUB_PERSONAL_ACCESS_TOKEN is not set in $ENV_FILE!
+⚠️ https://github.com/settings/personal-access-tokens
+⚠️ Add it to $ENV_FILE like so:
+⚠️ \t\tGITHUB_PERSONAL_ACCESS_TOKEN=<your_personal_access_token_here>
 \033[0m"
-  exit 1
 fi
 
 # GPG key validation
@@ -42,12 +44,11 @@ if [ -n "$secret_keys" ]; then
   echo "Found a GPG key"
 else
   echo -e "\033[31m
-❌ ERROR: Please configure a GPG key for git signoff:
-❌ https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
-❌ Then, tell git about it:
-❌ https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key
+⚠️ WARNING: Please configure a GPG key for git signoff:
+⚠️ https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
+⚠️ Then, tell git about it:
+⚠️ https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key
 \033[0m"
-  exit 1
 fi
 
 # git signingkey validation
@@ -57,10 +58,9 @@ if [ -n "$signing_key" ]; then
   echo "Found a user.signingkey value"
 else
   echo -e "\033[31m
-❌ ERROR: Please tell git about your GPG key:
-❌ https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key
+⚠️ WARNING: Please tell git about your GPG key:
+⚠️ https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key
 \033[0m"
-  exit 1
 fi
 
 # --- GPG Configuration ---
@@ -77,11 +77,11 @@ SCREEN_SESSION_NAME="devcontainer-gpg-forwarder"
 if ! command -v socat &> /dev/null; then
     echo "🔎 'socat' not found. Attempting to install..."
     if [[ "$(uname)" == "Darwin" ]]; then # macOS
-        if command -v brew &> /dev/null; then brew install socat; else echo "❌ Error: Homebrew not found." && exit 1; fi
+        if command -v brew &> /dev/null; then brew install socat; else echo "⚠️ WARNING: Homebrew not found."; fi
     elif [[ "$(uname)" == "Linux" ]]; then # Linux
-        if command -v apt-get &> /dev/null; then sudo apt-get update && sudo apt-get install -y socat; else echo "❌ Error: apt-get not found." && exit 1; fi
+        if command -v apt-get &> /dev/null; then sudo apt-get update && sudo apt-get install -y socat; else echo "⚠️ WARNING: apt-get not found."; fi
     else
-        echo "❌ Error: Unsupported OS '$(uname)'. Please install socat manually." && exit 1
+        echo "⚠️ WARNING: Unsupported OS '$(uname)'. Please install socat manually."
     fi
 fi
 
@@ -94,8 +94,7 @@ echo "   GPG agent is ready."
 # 3. Get the GPG agent socket path
 GPG_SOCKET_PATH=$(gpgconf --list-dirs agent-socket)
 if [ -z "$GPG_SOCKET_PATH" ]; then
-    echo "❌ Error: Could not find the GPG agent socket."
-    exit 1
+    echo "⚠️ WARNING: Could not find the GPG agent socket."
 fi
 
 # 4. Clean up any previous forwarder session and start a new one
@@ -118,9 +117,8 @@ if lsof -nP -iTCP:${FORWARD_PORT} -sTCP:LISTEN > /dev/null; then
     echo "   To view/attach to the session, run: screen -r ${SCREEN_SESSION_NAME}"
     echo "   To stop the forwarder, run: screen -S ${SCREEN_SESSION_NAME} -X quit"
 else
-    echo "❌ FATAL: GPG forwarder failed to start."
+    echo "⚠️ WARNING: GPG forwarder failed to start."
     echo "   Check the log file for errors: cat ${LOG_FILE}"
-    exit 1
 fi
 
 # 5. Export public keys
