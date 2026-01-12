@@ -5,6 +5,5 @@
   "project_name": "Place Holder",
   "project_slug": "place_holder",
   "project_short_description": "The best Holder in the entire Place.",
-  "first_version": "0.1.0",
   "__gh_slug": "{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
 }
