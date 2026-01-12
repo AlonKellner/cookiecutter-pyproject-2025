@@ -54,3 +54,10 @@ python = "./.venv"
 
 [tool.ty.src]
 exclude = [ "./.ties/**" ]
+
+[tool.claude-pre-commit]
+exclude-files = [ "lcov.info" ]
+ignore-rules = [ "shell-script-security", "dockerfile-security" ]
+python-custom-rules = [
+  # Add project-specific rules here
+]

@@ -2,6 +2,12 @@
 
 # --- Script to wrap the 'claude' CLI tool with custom exit code logic ---
 
+# Skip if there are no changes to review
+if [[ -z "$(git diff HEAD)" ]]; then
+  echo "No changes to review, skipping claude-review."
+  exit 0
+fi
+
 # Execute the command, capturing its combined standard output and standard error.
 # The exit code is captured immediately after the command runs.
 output=$(claude -p "/pre-commit" 2>&1)

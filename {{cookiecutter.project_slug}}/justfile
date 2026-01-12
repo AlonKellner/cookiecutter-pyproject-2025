@@ -4,6 +4,7 @@ set positional-arguments
 alias p := pre-commit
 alias pa := pre-commit-all
 alias t := test
+alias c := coverage
 alias b := bump
 
 # pre-commit the current changes
@@ -13,9 +14,15 @@ pre-commit *ARGS:
 
 # pre-commit all repo files
 pre-commit-all:
+    git add .
     pre-commit run --all
 
-# test all python versions and coverage the latest python version
+# test the specified path (uses latest Python)
 test *ARGS:
-    tox --parallel {{ARGS}}
+    tox -e path -- {{ARGS}}
+
+# run coverage tests
+coverage:
+    git add .
+    pre-commit run tox
 {% endraw %}

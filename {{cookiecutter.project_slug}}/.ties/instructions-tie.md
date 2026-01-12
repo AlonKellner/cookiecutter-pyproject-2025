@@ -3,28 +3,30 @@
 ## CLIs
 
 This python (3.13) repo uses the astral.sh stack along other CLIs:
-1. `devcontainer` - environment isolation
-2. `just` - common commands management
-3. `pre-commit` - triggers all of the following CLIs
-4. `uv` - venv and CLIs management
-5. `ruff` - format and lint
-6. `ty` - type checking
-7. `pytest` - testing
-8. `tox` - tests automation
-9. `typos` - spell checking
-10. `commitlint` - conventional commits adherence
-11. `pip-audit` - dependency security
-12. `trivy` - general security
-13. `claude` - for an objective AI review
-14. `lintok` - file size linter
-15. `ties` - file-to-file sync with transformations
-16. `yamlfmt` - yaml format and lint
-17. `biomejs` - json format and lint
-18. `rumdl` - markdown format and lint
-19. `lychee` - broken link detection
-20. `taplo` - general toml format and lint
-21. `pyproject-fmt` - pyproject.toml format and lint
-22. `tox-toml-fmt` - tox.toml format and lint
+
+- `devcontainer` - environment isolation
+- `just` - common repo commands management
+- `pre-commit` - triggers all of the following CLIs
+- `uv` - venv and CLIs management
+- `ruff` - format and lint
+- `ty` - type checking
+- `pytest` - testing
+- `tox` - tests automation
+- `typos` - spell checking
+- `commitlint` - conventional commits adherence
+- `pysentry` - dependency security
+- `osv-scanner` - general security
+- `claude` - for an objective AI review
+- `lintok` - file size linter
+- `ties` - file-to-file sync with transformations
+- `yamlfmt` - yaml format and lint
+- `biomejs` - json format and lint
+- `dockerfmt` - dockerfile format and lint
+- `rumdl` - markdown format and lint
+- `lychee` - broken link detection
+- `taplo` - general toml format and lint
+- `pyproject-fmt` - pyproject.toml format and lint
+- `tox-toml-fmt` - tox.toml format and lint
 
 ## Git
 
@@ -46,6 +48,7 @@ just p
 ```
 
 With no additional options.  
+You may also use `just pa` to run on all files (not only changes).
 Before editing anything, **ALWAYS** start with `just p`.  
 **NEVER** run a CLI directly before `just p` first.  
 Running a CLI directly is a last resort.  
@@ -76,10 +79,11 @@ Edited by `<name-of-code-assistant>`
 ## Edit Attempts
 
 Each sequence of edits and code generation without
-`just p` is an Edit Attempt.  
+`just p` or `just pa` is an Edit Attempt.  
 Edit Attempts should be atomic, focused and encapsulated.  
 
 Before any Edit Attempt:
+
 - a descriptive line:
 
   ```text
@@ -87,7 +91,8 @@ Before any Edit Attempt:
   ```
 
 After any Edit Attempt:  
-- `just p` (to `git add .` & `pre-commit` in a single command)
+
+- `just p` or `just pa` (to `git add .` & `pre-commit` in a single command)
 - a summary line:
 
   ```text
