@@ -2,9 +2,8 @@
 
 import json
 import sys
+import tomllib
 from pathlib import Path
-
-import toml
 
 
 def main() -> None:
@@ -15,9 +14,9 @@ def main() -> None:
         sys.exit(1)
 
     try:
-        with pyproject_path.open() as f:
-            pyproject = toml.load(f)
-    except toml.TomlDecodeError as e:
+        with pyproject_path.open("rb") as f:
+            pyproject = tomllib.load(f)
+    except tomllib.TOMLDecodeError as e:
         print(f"Error: Invalid TOML in pyproject.toml: {e}", file=sys.stderr)
         sys.exit(1)
 

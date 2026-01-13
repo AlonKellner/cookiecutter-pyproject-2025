@@ -39,7 +39,7 @@ disable = [ "MD052" ]
 
 [tool.lintok]
 max_tokens = 2048
-exclude = [ "uv.lock", "lcov.info" ]
+exclude = [ "uv.lock", "lcov.info", "pylock.toml", "requirements.txt" ]
 
 [tool.typos.files]
 extend-exclude = [ "**/.env.*" ]

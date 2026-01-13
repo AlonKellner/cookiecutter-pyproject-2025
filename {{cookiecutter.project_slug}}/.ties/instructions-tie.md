@@ -42,8 +42,9 @@ Assisted-by: `<name-of-code-assistant>`
 
 Run checks via `just p` (changed files) or `just pa` (all files).
 
-- If unsure of current state or starting after manual edits, run `just p` first to identify pre-existing issues.
-- You may proceed without `just p` if confident, but stay vigilant for baseline errors.
+- If unsure of current state or starting after manual edits,
+  run `just p` first to identify pre-existing issues.
+- Proceed without `just p` only if confident in the current state.
 - Favor `just` commands over direct CLI execution.
 
 ## Code

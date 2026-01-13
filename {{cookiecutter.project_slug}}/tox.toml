@@ -4,7 +4,14 @@ env_list = [ "py313", "path", "coverage" ]
 runner = "uv-venv-lock-runner"
 description = "Run test under {base_python}"
 skip_install = true
-commands = [ [ "pytest", { replace = "posargs", default = [ "tests" ], extend = true } ] ]
+commands = [
+  [
+    "uv",
+    "run",
+    "pytest",
+    { replace = "posargs", default = [ "tests" ], extend = true },
+  ],
+]
 
 [env.path]
 base_python = [ "py313" ]
@@ -21,6 +28,8 @@ commands = [
 base_python = [ "py313" ]
 commands = [
   [
+    "uv",
+    "run",
     "pytest",
     "tests",
     "--cov",
