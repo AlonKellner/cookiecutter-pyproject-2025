@@ -16,4 +16,5 @@ uv self update
 pre-commit autoupdate
 uv tool upgrade --all
 uv sync --upgrade
-pre-commit run --all-files; status=$?; git diff; (exit $status)
+git add .
+pre-commit run --all; status=$?; git diff; (exit $status)
