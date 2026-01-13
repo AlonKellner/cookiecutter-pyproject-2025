@@ -40,18 +40,11 @@ Assisted-by: `<name-of-code-assistant>`
 
 ## Just Pre-Commit
 
-`just pre-commit` is configured to run all CLIs (including tests).  
-To run, simply:
+Run checks via `just p` (changed files) or `just pa` (all files).
 
-```shell
-just p
-```
-
-With no additional options.  
-You may also use `just pa` to run on all files (not only changes).
-Before editing anything, **ALWAYS** start with `just p`.  
-**NEVER** run a CLI directly before `just p` first.  
-Running a CLI directly is a last resort.  
+- If unsure of current state or starting after manual edits, run `just p` first to identify pre-existing issues.
+- You may proceed without `just p` if confident, but stay vigilant for baseline errors.
+- Favor `just` commands over direct CLI execution.
 
 ## Code
 
@@ -75,28 +68,3 @@ or
 ```text
 Edited by `<name-of-code-assistant>`  
 ```
-
-## Edit Attempts
-
-Each sequence of edits and code generation without
-`just p` or `just pa` is an Edit Attempt.  
-Edit Attempts should be atomic, focused and encapsulated.  
-
-Before any Edit Attempt:
-
-- a descriptive line:
-
-  ```text
-  `[EDIT]` `<description>`: `STARTING`  
-  ```
-
-After any Edit Attempt:  
-
-- `just p` or `just pa` (to `git add .` & `pre-commit` in a single command)
-- a summary line:
-
-  ```text
-  `[EDIT]` `<description>`: `<status>`  
-  ```
-
-  where `<status>` is `SUCCESS` or `FAILED`
