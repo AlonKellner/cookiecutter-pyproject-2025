@@ -5,7 +5,6 @@ alias p := pre-commit
 alias pa := pre-commit-all
 alias t := test
 alias c := coverage
-alias b := bump
 
 # pre-commit the current changes
 pre-commit *ARGS:
@@ -25,8 +24,4 @@ test *ARGS:
 coverage:
     git add .
     pre-commit run tox
-
-# bump version (patch, minor, or major)
-bump TYPE:
-    uv run bump-my-version bump {{TYPE}}
 {% endraw %}

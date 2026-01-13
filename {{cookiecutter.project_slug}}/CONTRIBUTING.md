@@ -210,13 +210,8 @@ When reporting issues, please include:
 ## 🏷️ Release Process
 
 1. **Update CHANGELOG.md** with new changes
-2. **Create a release tag**
-
-   ```bash
-   just bump patch  # or `just b patch`
-   ```
-
-3. **GitHub Actions** will automatically build and publish to PyPI
+2. **Create a release tag** via GitHub Releases
+3. **GitHub Actions** will run CI on the release
 
 ## 🆘 Getting Help
 
