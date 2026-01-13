@@ -3,15 +3,15 @@ exclude = [
   '^https://.*pepy\.tech*',
   '^https://github\.com/{{cookiecutter.__gh_slug}}*',
   '^https://{{ cookiecutter.github_username|lower }}\.github\.io/{{ cookiecutter.project_slug }}*',
-  '\$',                        # Shell variables that look like URLs
-  'http.?:\/\/localhost',      # Localhost URLs
-  'http.?:\/\/.*\.svc',        # Kubernetes service URLs
-  'oauth2\/callback',          # OAuth callback paths
-  'api\.openai\.com',          # OpenAI API (rate-limited)
-  'api\.githubcopilot\.com',   # GitHub Copilot MCP (returns 503)
-  '\.internal',                # Internal domain patterns
-  'githubusercontent\.com',    # GitHub raw content (rate-limited)
-  'f".*"',                     # Python f-strings that look like URLs
+  '\$',                                     # Shell variables that look like URLs
+  'http.?:\/\/localhost',                   # Localhost URLs
+  'http.?:\/\/.*\.svc',                     # Kubernetes service URLs
+  'oauth2\/callback',                       # OAuth callback paths
+  'api\.openai\.com',                       # OpenAI API (rate-limited)
+  'api\.githubcopilot\.com',                # GitHub Copilot MCP (returns 503)
+  '\.internal',                             # Internal domain patterns
+  'githubusercontent\.com',                 # GitHub raw content (rate-limited)
+  'f".*"',                                  # Python f-strings that look like URLs
 ]
 exclude_path = [
   "uv.lock",

@@ -14,7 +14,11 @@ classifiers = [
   "License :: OSI Approved :: MIT License",
 
   "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Topic :: Software Development",
 ]
 
@@ -28,11 +32,22 @@ scripts.{{cookiecutter.project_slug}} = "{{cookiecutter.project_slug}}.cli:app"
 [dependency-groups]
 dev = [ "coverage[toml]", "pytest", "pytest-cov" ]
 
+[tool.uv]
+package = false
+python-preference = "only-managed"
+link-mode = "copy"
+
 [tool.pytest.ini_options]
 pythonpath = "./src"
 
 [tool.coverage.run]
 omit = [ "src/{{cookiecutter.project_slug}}/__init__.py" ]
+
+[tool.ty.environment]
+python = "./.venv"
+
+[tool.ty.src]
+exclude = [ "./.ties/**", "./.claude/**" ]
 
 [tool.rumdl]
 disable = [ "MD052" ]
@@ -43,17 +58,6 @@ exclude = [ "uv.lock", "lcov.info", "pylock.toml", "requirements.txt" ]
 
 [tool.typos.files]
 extend-exclude = [ "**/.env.*" ]
-
-[tool.uv]
-package = false
-python-preference = "only-managed"
-link-mode = "copy"
-
-[tool.ty.environment]
-python = "./.venv"
-
-[tool.ty.src]
-exclude = [ "./.ties/**", "./.claude/**" ]
 
 [tool.claude-pre-commit]
 exclude-files = [ "lcov.info" ]

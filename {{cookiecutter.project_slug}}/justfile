@@ -26,4 +26,3 @@ coverage:
     git add .
     pre-commit run tox
 {% endraw %}
-

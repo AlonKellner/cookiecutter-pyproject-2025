@@ -1,4 +1,4 @@
-"""{{ cookiecutter.project_short_description }}"""
+"""{{ cookiecutter.project_short_description }}."""
 
 from .__about__ import __version__
 from ._example import example

@@ -1,4 +1,4 @@
-"""{{ cookiecutter.project_short_description }}"""
+"""{{ cookiecutter.project_short_description }}."""
 
 from .cli import app
 
