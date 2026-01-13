@@ -14,7 +14,7 @@
 
 ## **2025 EXTRA FEATURES**
 *   Modern tooling ([tox](https://tox.wiki/en/4.28.4/), [typos](https://github.com/crate-ci/typos), [ties](https://alonkellner.com/ties/), [commitlint](https://commitlint.js.org/), [mkdocs-material](https://squidfunk.github.io/mkdocs-material/))
-*   Security ([devcontainers](https://code.visualstudio.com/docs/devcontainers/containers), [pip-audit](https://github.com/pypa/pip-audit), [trivy](https://trivy.dev/latest/))
+*   Security ([devcontainers](https://code.visualstudio.com/docs/devcontainers/containers), [pysentry](https://github.com/pysentry-rs/pysentry), [osv-scanner](https://google.github.io/osv-scanner/))
 *   Formatters & Linters for all file types ([biomejs](https://biomejs.dev/), [yamlfmt](https://github.com/google/yamlfmt) [taplo](https://taplo.tamasfe.dev/), [rumdl](https://docs.rs/rumdl/latest/rumdl/), [lychee](https://lychee.cli.rs/))
 *   AI Agent Supercharged ([Cursor](https://docs.cursor.com/en/welcome), [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview), [MCP](http://modelcontextprotocol.io/docs/getting-started/intro), [lintok](https://github.com/AlonKellner/lintok))
 

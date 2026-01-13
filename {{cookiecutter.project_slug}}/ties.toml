@@ -1,10 +1,4 @@
 [[tie]]
-name = ".gitignore -> trivy.yaml"
-source = ".gitignore"
-target = "trivy.yaml"
-transform = "transform:trivy_yaml"
-
-[[tie]]
 name = "mcp.json"
 source = ".ties/mcp-tie.json"
 targets = [".mcp.json", ".cursor/mcp.json"]
