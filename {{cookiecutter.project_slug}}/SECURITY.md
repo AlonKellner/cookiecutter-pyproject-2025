@@ -27,6 +27,7 @@ Please report security vulnerabilities by emailing us at
 `[SECURITY] {{ cookiecutter.project_name }} Vulnerability Report`.
 
 ### 3. **Include the following information** in your report
+
 - **Description**: A clear description of the vulnerability
 - **Steps to reproduce**: Detailed steps to reproduce the issue
 - **Impact**: Potential impact of the vulnerability
@@ -34,11 +35,13 @@ Please report security vulnerabilities by emailing us at
 - **Suggested fix**: If you have a suggested fix (optional)
 
 ### 4. **Response timeline**
+
 - **Initial response**: Within 48 hours
 - **Status update**: Within 1 week
 - **Resolution**: As quickly as possible, typically within 30 days
 
 ### 5. **Disclosure policy**
+
 - Vulnerabilities will be disclosed publicly after they are fixed
 - A security advisory will be published on GitHub
 - CVE numbers will be requested for significant vulnerabilities
@@ -47,6 +50,7 @@ Please report security vulnerabilities by emailing us at
 ## Security Best Practices
 
 ### For Users
+
 - Always use the latest stable version of {{ cookiecutter.project_name }}
 - Keep your dependencies updated
 - Review configuration files before applying them
@@ -54,6 +58,7 @@ Please report security vulnerabilities by emailing us at
 - Run {{ cookiecutter.project_name }} in a controlled environment
 
 ### For Contributors
+
 - Follow secure coding practices
 - Validate all user inputs
 - Use secure file handling methods
@@ -96,6 +101,7 @@ We believe in responsible disclosure and will:
 ## Security Team
 
 The security team consists of:
+
 - **Primary contact**: {{ cookiecutter.full_name }} (<{{ cookiecutter.email }}>)
 - **Backup contact**: GitHub Issues (for non-sensitive security discussions)
 

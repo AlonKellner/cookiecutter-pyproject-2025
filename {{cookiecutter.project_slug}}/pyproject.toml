@@ -29,7 +29,7 @@ scripts.{{cookiecutter.project_slug}} = "{{cookiecutter.project_slug}}.cli:app"
 dev = [ "coverage[toml]", "pytest", "pytest-cov" ]
 
 [tool.pytest.ini_options]
-pythonpath = "./"
+pythonpath = "./src"
 
 [tool.coverage.run]
 omit = [ "src/{{cookiecutter.project_slug}}/__init__.py" ]
@@ -53,7 +53,7 @@ link-mode = "copy"
 python = "./.venv"
 
 [tool.ty.src]
-exclude = [ "./.ties/**" ]
+exclude = [ "./.ties/**", "./.claude/**" ]
 
 [tool.claude-pre-commit]
 exclude-files = [ "lcov.info" ]
