@@ -16,4 +16,4 @@ uv self update
 pre-commit autoupdate
 uv tool upgrade --all
 uv sync --upgrade
-just pa
+just pa; git diff
