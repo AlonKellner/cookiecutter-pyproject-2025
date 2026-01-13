@@ -25,4 +25,8 @@ test *ARGS:
 coverage:
     git add .
     pre-commit run tox
+
+# bump version (patch, minor, or major)
+bump TYPE:
+    uv run bump-my-version bump {{TYPE}}
 {% endraw %}
