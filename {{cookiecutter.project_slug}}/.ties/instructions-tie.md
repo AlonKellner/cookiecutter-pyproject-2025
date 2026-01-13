@@ -49,7 +49,7 @@ Run checks via `just p` (changed files) or `just pa` (all files).
 
 ## Code
 
-Follow the Test-Driven-Developement (TDD) methodology.
+Follow the Test-Driven-Development (TDD) methodology.
 
 When reading code, files or terminal outputs - try to read
 necessary lines and information only, to reduce token usage.

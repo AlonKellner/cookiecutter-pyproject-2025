@@ -2,8 +2,9 @@
 
 import json
 import sys
-import tomllib
 from pathlib import Path
+
+import tomllib
 
 
 def main() -> None:
