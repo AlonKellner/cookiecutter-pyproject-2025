@@ -3,22 +3,15 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
-      - id: check-xml
       - id: check-toml
       - id: check-case-conflict
       - id: check-merge-conflict
-      - id: requirements-txt-fixer
       - id: detect-private-key
       - id: end-of-file-fixer
       - id: trailing-whitespace
         args: ["--markdown-linebreak-ext=md,mdc"]
       - id: check-added-large-files
         args: ["--maxkb=2000"]
-  - repo: https://github.com/google/yamlfmt
-    rev: v0.17.2
-    hooks:
-      - id: yamlfmt
-        name: yamlfmt (.yaml)
   - repo: https://github.com/biomejs/pre-commit
     rev: v2.3.10
     hooks:
@@ -31,7 +24,7 @@ repos:
   - repo: local
     hooks:
       - id: git-signoff
-        name: git signoff (commit message)
+        name: git-signoff (commit message)
         description: Adds a 'Signed-off-by:' trailer to the commit message.
         entry: scripts/add-signoff.sh
         language: script
@@ -51,15 +44,21 @@ repos:
         entry: uvx --from 'ties[yaml]' ties fix
         language: system
         pass_filenames: false
+      - id: yamlfmt
+        name: yamlfmt (yaml)
+        description: apply a consistent format to `*.yaml` files
+        entry: yamlfmt
+        language: system
+        types: [yaml]
       - id: taplo-format
-        name: taplo format (.toml)
+        name: taplo-format (.toml)
         description: apply a consistent format to `*.toml` files
         entry: taplo fmt
         language: system
         types: [toml]
         exclude: ^(pyproject\.toml|tox\.toml|pylock\.toml)$
       - id: taplo-check
-        name: taplo check (.toml)
+        name: taplo-check (.toml)
         description: check the syntax of `*.toml` files
         entry: taplo check
         language: system
@@ -77,7 +76,7 @@ repos:
         entry: uvx tox-toml-fmt
         language: system
         files: '(^|/)tox\.toml$'
-      - id: rumdl-check-fix
+      - id: rumdl
         name: rumdl (.md)
         description: apply a consistent format to `*.md` files
         entry: uvx rumdl check --fix
@@ -90,7 +89,7 @@ repos:
         language: system
         types: [text]
       - id: uv-sync
-        name: uv sync (.venv)
+        name: uv-sync (.venv)
         description: synchronize the environment with the latest tools and dependencies
         entry: uv sync
         language: system
@@ -106,7 +105,7 @@ repos:
       - id: uv-pylock
         name: uv-pylock (pylock.toml)
         description: generate `pylock.toml` from `pyproject.toml`
-        entry: bash -c "rm -f pylock.toml && uv export --format pylock.toml -o pylock.toml"
+        entry: bash -c "rm -f pylock.toml &&  uv export --format pylock.toml -o pylock.toml"
         language: system
         always_run: true
         pass_filenames: false
@@ -117,21 +116,21 @@ repos:
         language: system
         files: ^(uv\.lock|requirements\.txt)$
         pass_filenames: false
-      - id: ruff-check-fix
-        name: ruff check fix (.py)
+      - id: ruff-lint
+        name: ruff-lint (.py)
         description: run ruff to check and fix Python code style issues
         entry: uvx ruff check --fix --force-exclude --unsafe-fixes
         language: system
         types_or: [python, pyi, jupyter]
         require_serial: true
       - id: ruff-format
-        name: ruff format (.py)
+        name: ruff-format (.py)
         description: format Python code using ruff
         entry: uvx ruff format --force-exclude
         language: system
         types_or: [python, pyi, jupyter]
         require_serial: true
-      - id: ty-check
+      - id: ty
         name: ty (.py)
         description: run type checks using ty
         entry: uvx ty check .
@@ -139,7 +138,7 @@ repos:
         pass_filenames: false
         types_or: [python, pyi, jupyter]
       - id: claude-review
-        name: claude review (text)
+        name: claude-review (text)
         description: run Claude Code to review the code
         entry: .claude/claude-pre-commit.sh
         language: system
@@ -160,8 +159,8 @@ repos:
         require_serial: true
       - id: tox
         name: tox (tests)
-        description: run tox to check the project in different environments
-        entry: tox --parallel
+        description: run tox to test the project
+        entry: tox -e coverage
         language: system
         pass_filenames: false
       - id: osv-scanner

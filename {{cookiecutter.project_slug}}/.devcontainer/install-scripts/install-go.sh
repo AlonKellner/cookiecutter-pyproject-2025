@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Dynamically determine the latest Go version by querying the official site
+# Dynamically determine the latest stable Go version by querying the official site
 GOLANG_VERSION="$(curl -sSL "https://go.dev/VERSION?m=text" | grep go | sed 's/go//')"
 echo "Latest go Version: $GOLANG_VERSION"
 
